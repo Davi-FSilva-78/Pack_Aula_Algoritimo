@@ -10,8 +10,6 @@
     <input type="number" id="input_temperatura">
 
     <button onclick="calcular()"> Ver situação </button>
-
-    <div id="div_msm"></div>
     
 </body>
 </html>
@@ -20,9 +18,9 @@
         var temperatura = Number(input_temperatura.value)
 
         if (temperatura >= 21 && temperatura <= 24 ) {
-              aler(`Temperatura confortável :D`)
+            alert(`Temperatura confortável :D`)
         } else {
-            div_msm.innerHTML = `Temperatura DESCONFORTÁVEL :C`
+           alert(`Temperatura DESCONFORTÁVEL :C`)
         }
     }
 </script>
