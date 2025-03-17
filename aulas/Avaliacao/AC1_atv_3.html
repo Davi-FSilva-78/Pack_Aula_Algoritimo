@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxis automatizados</title>
+</head>
+<body>
+    <h1>Insira o nome do passageiro: </h1>
+    <input type="text" id="input_nome">
+    <br><br>
+
+    <h1>Insira a distância(km) até o destino: </h1>
+    <input type="text" id="input_km">
+    <br><br>
+
+    <h1>Informe a bandeira da coriida (1, 2 ou 3): </h1>
+    <input type="text" id="input_bandeira">
+    <br><br>
+
+    <h1>Informe o horário da corrida (0 a 23h): </h1>
+    <input type="text" id="input_horario">
+    <br><br>
+
+    <button onclick="calcular()"> CALCULAR CORRIDA</button>
+    <br><br>
+
+    <div id="div_msm"></div>
+
+    
+</body>
+</html>
+
+<script>
+    function calcular() {
+        nome = input_nome.value;
+        km = Number(input_km.value);
+        bandeira = Number(input_bandeira.value);
+        horario = Number(input_horario.value);
+
+        msm = `Olá ${nome} sua corrida, será na bandeira ${bandeira}, percorrerá ${km} km e o total da corrida será de ${total}`
+    }
+</script>
