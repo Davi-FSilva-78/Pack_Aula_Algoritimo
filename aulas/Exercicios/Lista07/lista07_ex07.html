@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>altura</title>
+    <title>Calculadora de cansaço do aluno - Aprimorada</title>
 </head>
 <body>
-    <h1> Inisira sua altura(m): </h1>
-    <input type="number" id="input_altura">
-    <br>
-
-    <button onclick="calcular()">ANALISAR ESTATURA</button>
+    <h1>Calculadora de cansaço aprimorada do aluno SPTech</h1>
+    
+    Meio de transporte 
+    <input 
+        type="text"    
+        id="input_transporte" 
+        placeholder="Ex: Ônibus, Metrô, Carro, Bicicleta"
+    >
+    <br><br>
+    Distância da faculdade (KM)
+    <input 
+        id="input_distancia" 
+        type="number"    
+        placeholder="Ex: 34"
+    >
     <br><br>
 
-    <div id="div_msm"></div>
+    <button onclick="calcular()">Calcular cansaço</button>
+    <br><br>
+
 </body>
 </html>
 
@@ -29,23 +41,38 @@
 //     Bicicleta. 
 // c) Tenha um input de texto para o usuário digitar a distância da casa dele até a faculdade, com o texto "Distância da faculdade (KM)" ao lado. 
 // d) Tenha o botão "Calcular cansaço" que ao clicar mostrar em um alerta o nível de cansaço do usuário. 
+
 // e) Se a distância da faculdade for de ATÉ 10 KM: 
 //     SE o meio de transporte for "Carro" OU "Metrô" OU "Ônibus" exiba um alert com a frase ("Tá tranks..."). 
-//     SENÃO exiba um alert com a frase ("É... um pouco cansado..."). 
+//     SENÃO exiba um alert com a frase ("É... um pouco cansado...").
+
 // f) Se a distância da faculdade for MAIOR que 10 KM: 
 //     SE o meio de transporte for "Carro" exiba um alert com a frase ("É... um pouco cansado..."); 
 //     SE o meio de transporte for "Metrô" OU "Ônibus" exiba um alert com a frase ("Bem cansado..."). 
 //     SE o meio de transporte for "Bicicleta" exiba um alert com a frase ("Vish... tá só o pó..."). 
     function calcular() {
-        var altura = Number(input_altura.value);
-
-        if (altura <= 1.65) {
-            div_msm.innerHTML = "Você pode ser piloto de corrida";  
-        } else if (altura <= 1.80) {
-            div_msm.innerHTML = "Você pode ser jogador de futebol"; 
+        var transporte = input_transporte.value;
+        var distancia = Number(input_distancia.value);
+        
+        var mensagem = 'Error: valor inválido. Verifique se a palavra começa com letra maiúscula e se está escrita corretamente.';
+            
+        if (distancia <= 10) {
+            if (transporte == 'Metrô' || transporte == 'Ônibus' || transporte == 'Carro') {
+                mensagem = "Tá tranks...";   
+            } else if (transporte == 'Bicicleta') {
+                mensagem = "É... um pouco cansado...";   
+            }
         } else {
-            div_msm.innerHTML = "Você pode ser jogador de vôlei ou basquete"; 
+            if (transporte == 'Carro') {
+                mensagem = 'É... um pouco cansado...';
+            } else if (transporte == 'Metrô' || transporte == 'Ônibus') {
+                mensagem = 'Bem cansado...';
+            } else if (transporte == 'Bicicleta') {
+                mensagem = 'Vish... tá só o pó...'
+            }
         }
+
+        alert(mensagem);
 
     };
 </script>

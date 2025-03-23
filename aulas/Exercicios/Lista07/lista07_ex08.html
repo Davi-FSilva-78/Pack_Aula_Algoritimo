@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>altura</title>
+    <title>Critérios de Preferência</title>
 </head>
 <body>
-    <h1> Inisira sua altura(m): </h1>
-    <input type="number" id="input_altura">
+    <h1> Nome da empresa </h1>
+    <input 
+        type="text"     
+        id="input_nome"     
+        placeholder="Ex: Atos"
+    >
     <br>
 
-    <button onclick="calcular()">ANALISAR ESTATURA</button>
+    <h1> Valor da bolsa(R$) </h1>
+    <input 
+        type="number"     
+        id="input_val_bolsa"     
+        placeholder="Ex: 2000"
+    >
+    <br>
+
+    <h1> Valor do VR(R$/dia) </h1>
+    <input 
+        type="number"     
+        id="input_val_vr"     
+        placeholder="20"
+    >
+    <br>
+
+    <h1> Tempo de deslocamento entre empresa e a faculade(min) </h1>
+    <input 
+        type="number"     
+        id="input_temp"     
+        placeholder="30"
+    >
+    <br><br>
+
+    <button onclick="calcular()">É preferida? </button>
     <br><br>
 
     <div id="div_msm"></div>
@@ -28,15 +56,19 @@
 //    "A empresa X é uma de suas preferências", caso a empresa atenda a pelo menos um dos critérios aqui explicados  
 //    "A empresa X está fora da sua lista", caso contrário 
     function calcular() {
-        var altura = Number(input_altura.value);
+        var nome = input_nome.value;
+        var val_bolsa = Number(input_val_bolsa.value);
+        var val_vr = Number(input_val_vr.value);
+        var temp = Number(input_temp.value);
 
-        if (altura <= 1.65) {
-            div_msm.innerHTML = "Você pode ser piloto de corrida";  
-        } else if (altura <= 1.80) {
-            div_msm.innerHTML = "Você pode ser jogador de futebol"; 
+        var mensagem = ``;
+        
+        if (val_bolsa >= 1800 || val_vr >= 20 || temp <= 30) {
+            mensagem = `A empresa ${nome} é uma de suas preferências`
         } else {
-            div_msm.innerHTML = "Você pode ser jogador de vôlei ou basquete"; 
+            mensagem = `A empresa ${nome} está fora da sua lista`; 
         }
-
+                
+        div_msm.innerHTML = mensagem;  
     };
 </script>
