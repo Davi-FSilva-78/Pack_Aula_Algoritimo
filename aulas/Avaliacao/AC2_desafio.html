@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantos produtos foram comprados:
+    <input type="number" id="input_quantidade_produtos">
+    <br><br>
+
+    Qual valor gasto pelo cliente:
+    <input type="number" id="input_valor_total">
+    <br><br>
+
+    Informe se o cliente é VIP:
+    <select id="select_cliente_vip">
+        <option>Sim</option>
+        <option>Não</option>
+    </select>
+    <br><br>
+
+    <button onclick="desconto()">Ver desconto</button>
+    <br><br>
+
+    <div id="div_msm"></div>
+
+</body>
+</html>
+
+<script>
+  
+
+    function desconto () {
+        var qtdProdutos = Number(input_quantidade_produtos.value);
+        var gasto = Number(input_valor_total.value);
+        var vip = select_cliente_vip.value;
+        var valorComDesconto = 0;
+        var pontos = 0
+        var gastoDesc = 0;
+       
+        if (qtdProdutos > 5) {
+            if (((qtdProdutos > 5 && qtdProdutos <=10 ) && gasto > 200) || vip =='Sim' ) {
+                gastoDesc += 0.05;
+        } 
+        if ((qtdProdutos>=5 && gasto >= 200) || vip=="Sim" ) {
+                pontos += 50; 
+            }
+        
+        if ((qtdProdutos > 10 && gasto > 500) || vip =='Sim') {   
+                    gastoDesc+=  0.1;
+        
+            if (qtdProdutos >10 && gasto > 500) {       
+                pontos += 100;
+            } 
+            
+            if (gasto > 1000 && vip =='Sim' ) {
+                gastoDesc += 0.15
+            }
+        }       
+        }
+
+        valorComDesconto = gasto - (gasto * gastoDesc);
+        mensagem1 = `Produtos: ${qtdProdutos}<br>`;
+        mensagem2 = `R$ ${gasto}<br>`;
+        mensagem3 = `R$ ${valorComDesconto}<br>`;
+        mensagem4 = `VIP = ${vip}<br>`;
+        mensagem5 = `${gastoDesc * 100}% <br>`;
+        mensagem6 = `${pontos} Pontos<br>`;
+        
+        div_msm.innerHTML = mensagem1 + mensagem2 + mensagem3 + mensagem4 + mensagem5 + mensagem6;
+    
+    }
+    
+//     Desafio: Sistema de Recompensas e Descontos
+// Você está criando um sistema de recompensas e descontos para um cliente que compra produtos em uma loja. O sistema precisa calcular o desconto e a recompensa com base em uma série de condições complexas, utilizando tanto os operadores lógicos and quanto or.
+
+// Regras para o desconto e recompensa:
+// Desconto:
+// Se o cliente comprar mais de 10 produtos e gastar mais de R$ 1000,00, e for cliente VIP, ele recebe um desconto extra de 15%.
+// Se o cliente comprar mais de 10 produtos e gastar mais de R$ 500,00 ou for VIP, ele recebe 10% de desconto.
+// Se o cliente comprar entre 6 e 10 produtos e gastar mais de R$ 200,00, ou for VIP, ele recebe 5% de desconto.
+// Se o cliente comprar 5 produtos ou menos ele não recebe desconto, mesmo sendo cliente VIP.
+// Importante: os descontos podem ser acumulados.
+
+// Recompensa:
+// O cliente recebe uma recompensa de 50 pontos se comprar mais de 5 produtos e gastar mais de R$ 200,00 ou se for cliente VIP.
+// Se o cliente gastar mais de R$ 500,00 e comprar mais de 10 produtos, ele ganha uma recompensa extra de 100 pontos.
+// O cliente não recebe recompensa se comprar 5 produtos ou menos, mesmo sendo cliente VIP.
+// Entrada de Dados:
+// input_quantidade_produtos: O número de produtos comprados pelo cliente.
+// input_valor_total: O total gasto pelo cliente em reais.
+// input_cliente_vip: Se o cliente é VIP ou não (booleano: True ou False),para esse item, você pode utilizar um select com "Sim" e "Não", mas lembre-se de trocar o id para select_cliente_vip
+// Saída Esperada:
+// O valor do desconto que o cliente pode receber.
+// O número de pontos de recompensa que o cliente vai acumular.
+// Exemplos:
+// Quantidade de Produtos	Valor Total (R$)	Cliente VIP	Desconto (%)	Pontos de Recompensa
+// 5	150,00	False	0%	0
+// 6	250,00	False	5%	50
+// 6	250,00	True	15%	50
+// 10	500,00	False	5%	50
+// 10	500,00	True	15%	50
+// 11	1000,00	False	10%	150
+// 11	1000,00	True	15%	150
+// 15	1200,00	True	30%	150
+// 11	200,00	True	15%	50
+// 9	1000,00	False	5%	50
+// 8	700,00	True	15%	50
+// 5	300,00	True	0%	0
+// 12	1100,00	False	10%	150
+// 15	100,00	False	0%	0
+// 5	150,00	True	0%	0
+
+
+</script>
