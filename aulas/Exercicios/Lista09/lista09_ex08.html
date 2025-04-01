@@ -33,10 +33,15 @@
         var numero = Number(input_numero.value);
         var frase = input_frase.value;
         var cont = 0;
-
+        var mensagem='';
+        while (cont < numero) {
+            mensagem += frase;
+            cont++;
+        }
+        cont=0
         while (cont < numero) {
             cont++;
-            alert(frase);
+            alert(mensagem);
         }
 
         div_msm.innerHTML = mensagem;
