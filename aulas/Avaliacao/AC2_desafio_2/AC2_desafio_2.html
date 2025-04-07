@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2 {
+        color: blue;
+    }
+
+    div {
+        border-bottom: 1px solid #000;
+        padding-bottom: 10px;
+    }
+</style>
+<body>
+    <div>
+        <h2> Macaron</h2>
+        <h3> Insira a quantidade de macaron comprada:</h3>
+        <input type="number" id="input_qtd_macaron">
+        <h3> Insira o valor unitario do macaron:</h3>
+        <input type="number" id="input_val_macaron">
+    </div>
+    <br>
+
+    <div>
+        <h2> Brigadeiro</h2>
+        <h3> Insira a quantidade de brigadeiro comprado:</h3>
+        <input type="number" id="input_qtd_brigadeiro">
+        <h3> Insira o valor unitario do brigadeiro:</h3>
+        <input type="number" id="input_val_brigadeiro">
+    </div>
+    <br>
+
+    <div>
+        <h2> cupcake</h2>
+        <h3> Insira a quantidade de cupcake comprada:</h3>
+        <input type="number" id="input_qtd_cupcake">
+        <h3> Insira o vaor unitário do cupcake:</h3>
+        <input type="number" id="input_val_cupcake">
+    </div>
+    <br>
+   
+
+    <div>
+        <h2> cheesecake</h2>
+        <h3> Insira a quantidade de cheesecake comprada:</h3>
+        <input type="number" id="input_qtd_cheesecake">
+        <h3> Insira o vaor unitário do cheesecake:</h3>
+        <input type="number" id="input_val_cheesecake">
+    </div>
+    <br>
+   
+
+    <button onclick="verificar()">Verificar vendas</button>
+    <br><br>
+
+    <div id="div_msm"></div>
+</body>
+</html>
+<script>
+
+    //Armazena valores de input refernte a macarons
+    var qtd_macaron = '';
+    var val_macaron = '';
+
+    //Armazena valores de input refernte a brigadeiro
+    var qtd_brigadeiro = '';
+    var val_brigadeiro = '';
+
+    //Armazena valores de input refernte a cupcakes
+    var qtd_cupcake = '';  
+    var val_cupcake = '';   
+    
+    //Armazena valores de input refernte a cheescake
+    var qtd_cheesecake = '';
+    var val_cheesecake = '';
+
+    //mensagm global parapreservar valores
+    var mensagem = '';
+
+    //variavel para autenticar aplicação
+    var validacao = '';
+
+    //variavel para coletar valor de contador
+    var contador = 0;
+    function verificar () {
+        
+        
+        validar_entrada ();
+        
+        if (validacao == false) {
+            alert (`Os campos 'quantidade' e/ou 'Valor' não podem estar negativos`);
+        } else {
+            var contador2 = 0;
+
+            contador = qtd_macaron + qtd_brigadeiro + qtd_cupcake + qtd_cheesecake;
+
+            while (contador > 0) {
+                mensagem = `Venda 1 ${} `
+                contador -= 1;
+
+            while (){
+
+            }
+          }
+
+
+
+
+
+
+
+
+
+
+
+        }
+    }
+
+    function validar_entrada () {
+
+        //Armazena valores de input refernte a macarons
+        qtd_macaron = Number(input_qtd_macaron.value);
+        val_macaron = Number(input_val_macaron.value);
+
+        //Armazena valores de input refernte a brigadeiro
+        qtd_brigadeiro = Number(input_qtd_brigadeiro.value);
+        val_brigadeiro = Number(input_val_brigadeiro.value);
+
+        //Armazena valores de input refernte a cupcakes
+        qtd_cupcake = Number(input_qtd_cupcake.value);
+        val_cupcake = Number(input_val_cupcake.value);
+
+        //Armazena valores de input refernte a cheescake
+        qtd_cheesecake = Number(input_qtd_cheesecake.value);
+        val_cheesecake = Number(input_val_cheesecake.value);
+    
+        if (
+            (qtd_macaron < 0 || val_macaron < 0) || 
+            (qtd_brigadeiro < 0 || val_brigadeiro < 0) || 
+            (qtd_cupcake < 0 || val_cupcake < 0) ||
+            (qtd_cheesecake < 0 || val_cheesecake < 0)
+            ) {
+
+            validacao = false;
+
+        } else {
+            validacao = true;
+        }
+    }
+
+    function formatar_saida () {
+        // puxa imagens da pastano sistema
+        var macaron = `<img src="img/ ">`;
+        var brigadeiro = `<img src="img/ ">`;
+        var cupcake = `<img src="img/ ">`;
+        var cheesecake = `<img src="img/ ">`;
+
+    }
+
+
+    
+</script>
