@@ -15,6 +15,11 @@
         border-bottom: 1px solid #000;
         padding-bottom: 10px;
     }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
 </style>
 
 <body>
@@ -64,7 +69,6 @@
 
 </html>
 <script>
-
     //Armazena valores de input refernte a macarons
     var qtd_macaron = '';
     var val_macaron = '';
@@ -86,33 +90,36 @@
 
     //variavel para autenticar aplicação
     var validacao = '';
-    
-    //variavel para venda
-    var venda = 1;
+
+    //variavel para controle de rodada
+    var contador_doces = 1;
+
+    //variavel para contar nº de repetição combase no limite de doces
+    var total_doces = 0;
+
+    //Variavel para somar preços totais de doces
+    var preco_total = 0;
 
 
     function verificar() {
 
+        declarar_valor_variaveis();
 
         validar_entrada();
 
         if (validacao == false) {
             alert(`Os campos 'quantidade' e/ou 'Valor' não podem estar negativos`);
         } else {
-            
-            calc_macaron();
-            calc_brigadeiro();
-            calc_cupcake();
-            calc_cheescake();
 
-            div_msm.innerHTML = mensagem;
+            listar_produtos();
+
+            exibir_msm();
 
         }
 
     }
 
-    function validar_entrada() {
-
+    function declarar_valor_variaveis() {
         //Armazena valores de input refernte a macarons
         qtd_macaron = Number(input_qtd_macaron.value);
         val_macaron = Number(input_val_macaron.value);
@@ -129,59 +136,50 @@
         qtd_cheesecake = Number(input_qtd_cheesecake.value);
         val_cheesecake = Number(input_val_cheesecake.value);
 
+        //Declara preco total da lista
+        preco_total = (qtd_macaron * val_macaron) 
+        + (qtd_brigadeiro * val_brigadeiro) 
+        + (qtd_cupcake * val_cupcake)
+        + (qtd_cheesecake * val_cheesecake);
+
+        total_doces = qtd_macaron + qtd_brigadeiro + qtd_cupcake + qtd_cheesecake;
+    }
+
+    function validar_entrada() {
+
         if (
-            (qtd_macaron < 0 || val_macaron < 0) ||
-            (qtd_brigadeiro < 0 || val_brigadeiro < 0) ||
-            (qtd_cupcake < 0 || val_cupcake < 0) ||
-            (qtd_cheesecake < 0 || val_cheesecake < 0)
+            (qtd_macaron < 0 || val_macaron < 0)
+            || (qtd_brigadeiro < 0 || val_brigadeiro < 0)
+            || (qtd_cupcake < 0 || val_cupcake < 0)
+            || (qtd_cheesecake < 0 || val_cheesecake < 0)
         ) {
-
             validacao = false;
-
         } else {
             validacao = true;
         }
     }
 
-    function calc_macaron() {
+    function listar_produtos() {
 
-        var contador = 1;
-        
-        while (contador <= qtd_macaron) {
-            mensagem += `Venda ${venda} - <img src="img/download.jpeg"> - R$${val_macaron}<br>`;
-            contador++;
-            venda++;
+        while (contador_doces < total_doces) {
+
+            if (contador_doces < qtd_macaron) {
+                mensagem += `Venda ${contador_doces} - <img src="img/download.jpeg"> - R$${val_macaron}<br>`;
+            } else if (contador_doces < qtd_macaron + qtd_brigadeiro) {
+                mensagem += `Venda ${contador_doces} - <img src="img/brigas.jpeg"> - R$${val_brigadeiro}<br>`;
+            } else if (contador_doces < qtd_macaron + qtd_brigadeiro + qtd_cupcake) {
+                mensagem += `Venda ${contador_doces} - <img src="img/cupcake.jpeg"> - R$${val_cupcake}<br>`;
+            } else {
+                mensagem += `Venda ${contador_doces} - <img src="img/cheescake.jpeg"> - R$${val_cheesecake}<br>`;
+            }
+
+            contador_doces++;
+
         }
     }
 
-    function calc_brigadeiro() {
-        contador = 1;
-
-        while (contador <= qtd_brigadeiro) {
-            mensagem += `Venda ${venda} - <img src="img/brigas.jpeg "> - R$${val_brigadeiro}<br>`;
-            contador++;
-            venda++;
-        }
-    }
-
-    function calc_cupcake() {
-        contador = 1;
-
-        while (contador <= qtd_cupcake) {
-            mensagem += `Venda ${venda} - <img src="img/cupcake.jpeg "> - R$${val_cupcake}<br>`;
-            contador++;
-            venda++;
-        }
-    }
-
-    function calc_cheescake() {
-        contador = 1;
-
-        while (contador <= qtd_cheesecake) {
-            mensagem += `Venda ${venda} - <img src="img/cheescake.jpeg "> - R$${val_cheesecake}<br>`;
-            contador++;
-            venda++;
-        }
+    function exibir_msm () {
+        div_msm.innerHTML = mensagem + `<br> Com a quantidade de ${qtd_macaron} Macarons, ${qtd_brigadeiro} Brigadeiros, ${qtd_cupcake} Cupcakes e ${qtd_cheesecake} Cheesecakes, a venda totalizará R$ ${preco_total.toFixed(2)}`;
     }
 
 

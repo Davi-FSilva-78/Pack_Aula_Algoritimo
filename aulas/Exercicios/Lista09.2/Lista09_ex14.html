@@ -41,17 +41,18 @@
         var treino = Number(input_treino.value);
         var mensagem = '';
         var cont = 1;
+        var cont_dia = 1;
        
         while (cont <= 30) {
 
-            if (cont == 1) {
+            if (cont == cont_dia) {
                 mensagem += `Dia ${cont} - Musculação<br>`;
-            }else if (cont % treino == 0){
-                mensagem += `Dia ${cont} - Musculação<br>`;
+                cont_dia += treino;
             } else {
                 mensagem += `Dia ${cont} Comer, dormir etc<br>`;
             } 
             cont++;
+            
         }
            
         div_msm.innerHTML = mensagem;
